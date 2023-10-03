@@ -151,7 +151,8 @@ class _UserProfileState extends State<UserProfile> {
                 height: 150,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  shape: BoxShape.rectangle
+                  shape: BoxShape.rectangle,
+                  color: Colors.deepPurple.shade100
                 ),
                 child: Icon(Icons.person),
               ),

@@ -185,65 +185,67 @@ class _PredictionScreenState extends State<PredictionScreen> {
           ],
         ),
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  controller: pregnanciesController,
-                  decoration: InputDecoration(labelText: 'Pregnancies'),
-                ),
-                TextField(
-                  controller: glucoseController,
-                  decoration: InputDecoration(labelText: 'Glucose'),
-                ),
-                TextField(
-                  controller: bloodPressureController,
-                  decoration: InputDecoration(labelText: 'Blood Pressure'),
-                ),
-                TextField(
-                  controller: skinThicknessController,
-                  decoration: InputDecoration(labelText: 'Skin Thickness'),
-                ),
-                TextField(
-                  controller: insulinController,
-                  decoration: InputDecoration(labelText: 'Insulin'),
-                ),
-                TextField(
-                  controller: bmiController,
-                  decoration: InputDecoration(labelText: 'BMI'),
-                ),
-                TextField(
-                  controller: diabetesPedigreeController,
-                  decoration:
-                  InputDecoration(labelText: 'Diabetes Pedigree Function'),
-                ),
-                TextField(
-                  controller: ageController,
-                  decoration: InputDecoration(labelText: 'Age'),
-                ),
-                SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: predictDiabetes,
-                  child: Text('Predict Diabetes'),
-                ),
-                SizedBox(height: 16.0),
-                Text('Prediction Result: $predictionResult'),
-                Text('Accuracy: ${accuracy.toStringAsFixed(2)}'),
-              ],
-            ),
-          ),
-          if (isLoading)
-            Container(
-              color: Colors.black.withOpacity(0.5), // Background color
-              child: Center(
-                child: CircularProgressIndicator(),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                    controller: pregnanciesController,
+                    decoration: InputDecoration(labelText: 'Pregnancies'),
+                  ),
+                  TextField(
+                    controller: glucoseController,
+                    decoration: InputDecoration(labelText: 'Glucose'),
+                  ),
+                  TextField(
+                    controller: bloodPressureController,
+                    decoration: InputDecoration(labelText: 'Blood Pressure'),
+                  ),
+                  TextField(
+                    controller: skinThicknessController,
+                    decoration: InputDecoration(labelText: 'Skin Thickness'),
+                  ),
+                  TextField(
+                    controller: insulinController,
+                    decoration: InputDecoration(labelText: 'Insulin'),
+                  ),
+                  TextField(
+                    controller: bmiController,
+                    decoration: InputDecoration(labelText: 'BMI'),
+                  ),
+                  TextField(
+                    controller: diabetesPedigreeController,
+                    decoration:
+                    InputDecoration(labelText: 'Diabetes Pedigree Function'),
+                  ),
+                  TextField(
+                    controller: ageController,
+                    decoration: InputDecoration(labelText: 'Age'),
+                  ),
+                  SizedBox(height: 16.0),
+                  ElevatedButton(
+                    onPressed: predictDiabetes,
+                    child: Text('Predict Diabetes'),
+                  ),
+                  SizedBox(height: 16.0),
+                  Text('Prediction Result: $predictionResult'),
+                  Text('Accuracy: ${accuracy.toStringAsFixed(2)}'),
+                ],
               ),
-            ), // Show loading indicator
-        ],
+            ),
+            if (isLoading)
+              Container(
+                color: Colors.black.withOpacity(0.5), // Background color
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ), // Show loading indicator
+          ],
+        ),
       ),
     );
   }
