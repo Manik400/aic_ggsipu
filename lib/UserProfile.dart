@@ -153,7 +153,7 @@ class _UserProfileState extends State<UserProfile> {
                   borderRadius: BorderRadius.circular(10.0),
                   shape: BoxShape.rectangle
                 ),
-                child: image,
+                child: Icon(Icons.person),
               ),
             ),
           ),
