@@ -1,6 +1,9 @@
 import 'package:aic_ggsipu/caard.dart';
 import 'package:aic_ggsipu/feature_card.dart';
+import 'package:aic_ggsipu/surveyPage.dart';
 import 'package:flutter/material.dart';
+
+import 'UserProfile.dart';
 
 class dashboard extends StatefulWidget {
   const dashboard({super.key});
@@ -11,14 +14,16 @@ class dashboard extends StatefulWidget {
 
 class _dashboardState extends State<dashboard> {
   List<String> imgpth = [
+    'assets/diabaic.jpeg',
     'assets/aichert.jpeg',
     'assets/cancaic.jpeg',
-    'assets/diabaic.jpeg'
+
   ];
   List<String> text = [
+    'Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces.',
     'Heart disease is the leading cause of death for people of most racial and ethnic groups in many countries',
     'Cancer is a generic term for a large group of diseases that can affect any part of the body. ',
-    'Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces.'
+
   ];
 
   @override
@@ -80,6 +85,9 @@ class _dashboardState extends State<dashboard> {
               onTap: () {
                 // Add your navigation logic here
                 Navigator.pop(context); // Close the drawer
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return UserProfile();
+                }));
                 // Navigate to the settings screen
               },
             ),
@@ -166,12 +174,6 @@ class _dashboardState extends State<dashboard> {
                       fontSize: 23,
                     ),
                   ),
-                ),
-              ),
-              Text(
-                'Blood Group  :  B+ve',
-                style: TextStyle(
-                  fontSize: 15,
                 ),
               ),
               Padding(

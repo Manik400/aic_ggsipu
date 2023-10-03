@@ -32,7 +32,7 @@ class _carddState extends State<cardd> {
                   width: 190,
                   color: Colors.deepPurple.shade200,
                   child: Container(
-                    height: 40,
+                     height: 40,
                       width: 40,
                       child: CircleAvatar(
                           maxRadius: 5.0,

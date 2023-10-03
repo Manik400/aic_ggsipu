@@ -1,3 +1,4 @@
+import 'package:aic_ggsipu/surveyPage.dart';
 import 'package:flutter/material.dart';
 
 class featureCard extends StatefulWidget {
@@ -55,7 +56,11 @@ class _featureCardState extends State<featureCard> {
                     Padding(
                       padding: const EdgeInsets.only(top: 5.0),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: widget.imgpath == 'assets/diabaic.jpeg' ? () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return PredictionScreen();
+                          }));
+                        } : (){},
                         child: Text(
                           'Start Survey',
                           style: TextStyle(
