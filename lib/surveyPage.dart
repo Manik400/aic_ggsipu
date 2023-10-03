@@ -336,8 +336,13 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
   String predictionResult = "";
   double accuracy = 0.0;
-
+  bool isLoading = false;
   Future<void> predictDiabetes() async {
+
+    setState(() {
+      isLoading = true; // Show loading indicator
+    });
+
     final apiUrl = Uri.parse('http://192.168.43.67:8080/predict');
 
     final requestBody = {
@@ -366,8 +371,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
     } else {
       predictionResult = "Error: Unable to make a prediction.";
     }
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      isLoading = false; // Show loading indicator
+    });
 
-    setState(() {});
   }
 
   @override
@@ -428,6 +436,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
               onTap: () {
                 // Add your navigation logic here
                 Navigator.pop(context); // Close the drawer
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return UserProfile();
+                }));
                 // Navigate to the settings screen
               },
             ),
@@ -488,54 +499,65 @@ class _PredictionScreenState extends State<PredictionScreen> {
           ],
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: pregnanciesController,
-              decoration: InputDecoration(labelText: 'Pregnancies'),
-            ),
-            TextField(
-              controller: glucoseController,
-              decoration: InputDecoration(labelText: 'Glucose'),
-            ),
-            TextField(
-              controller: bloodPressureController,
-              decoration: InputDecoration(labelText: 'Blood Pressure'),
-            ),
-            TextField(
-              controller: skinThicknessController,
-              decoration: InputDecoration(labelText: 'Skin Thickness'),
-            ),
-            TextField(
-              controller: insulinController,
-              decoration: InputDecoration(labelText: 'Insulin'),
-            ),
-            TextField(
-              controller: bmiController,
-              decoration: InputDecoration(labelText: 'BMI'),
-            ),
-            TextField(
-              controller: diabetesPedigreeController,
-              decoration:
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextField(
+                  controller: pregnanciesController,
+                  decoration: InputDecoration(labelText: 'Pregnancies'),
+                ),
+                TextField(
+                  controller: glucoseController,
+                  decoration: InputDecoration(labelText: 'Glucose'),
+                ),
+                TextField(
+                  controller: bloodPressureController,
+                  decoration: InputDecoration(labelText: 'Blood Pressure'),
+                ),
+                TextField(
+                  controller: skinThicknessController,
+                  decoration: InputDecoration(labelText: 'Skin Thickness'),
+                ),
+                TextField(
+                  controller: insulinController,
+                  decoration: InputDecoration(labelText: 'Insulin'),
+                ),
+                TextField(
+                  controller: bmiController,
+                  decoration: InputDecoration(labelText: 'BMI'),
+                ),
+                TextField(
+                  controller: diabetesPedigreeController,
+                  decoration:
                   InputDecoration(labelText: 'Diabetes Pedigree Function'),
+                ),
+                TextField(
+                  controller: ageController,
+                  decoration: InputDecoration(labelText: 'Age'),
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: predictDiabetes,
+                  child: Text('Predict Diabetes'),
+                ),
+                SizedBox(height: 16.0),
+                Text('Prediction Result: $predictionResult'),
+                Text('Accuracy: ${accuracy.toStringAsFixed(2)}'),
+              ],
             ),
-            TextField(
-              controller: ageController,
-              decoration: InputDecoration(labelText: 'Age'),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: predictDiabetes,
-              child: Text('Predict Diabetes'),
-            ),
-            SizedBox(height: 16.0),
-            Text('Prediction Result: $predictionResult'),
-            Text('Accuracy: ${accuracy.toStringAsFixed(2)}'),
-          ],
-        ),
+          ),
+          if (isLoading)
+            Container(
+              color: Colors.black.withOpacity(0.5), // Background color
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ), // Show loading indicator
+        ],
       ),
     );
   }
