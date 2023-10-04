@@ -1,0 +1,38 @@
+Feature scaling is a data preprocessing technique used in machine learning to
+standardize or normalize the range of independent variables or features of a dataset.
+
+For SVM, feature scaling is highly recommended. These algorithms are sensitive to the scale
+of features and can perform poorly if features have different scales.
+
+If the features in my dataset have different units or magnitude,
+feature scaling is likely to be beneficial in making the model training process
+more stable and improving convergence.
+
+Predicting whether a person is diabetic or not is a binary classification task, not a regression task.
+You want to assign individuals to one of two categories:
+diabetic(1) or non-diabetic(0).
+Gradient Boosting models like XGBoost and LightGBM are ensemble techniques  that consist of decision trees as
+base models.
+These models are generally not sensitive to feature scaling, and in many cases,
+feature scaling is not necessary.
+
+It is a common convention to represent the input features(X) as a 2D array. Treating
+features as a 2D array makes code more consistent and generalizable. Many machine learning
+libraries expect input data to be in this format, and using a 2D array ensures compatibility with
+various algorithms.
+
+
+
+
+# xgb_classifier.fit(X_train,y_train)
+# # Make predictions
+# y_pred_xgb = xgb_classifier.predict(X_test)
+#
+# # Evaluate the model
+# accuracy_xgb = accuracy_score(y_test, y_pred_xgb)
+# conf_matrix_xgb = confusion_matrix(y_test, y_pred_xgb)
+# classification_rep_xgb = classification_report(y_test, y_pred_xgb)
+#
+# print("XGBoost Classifier Accuracy:", accuracy_xgb)
+# print("Confusion Matrix:\n", conf_matrix_xgb)
+# print("Classification Report:\n", classification_rep_xgb)
